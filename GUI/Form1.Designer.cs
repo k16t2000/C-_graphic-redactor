@@ -98,7 +98,7 @@
             this.newToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("newToolStripMenuItem.Image")));
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
@@ -149,8 +149,9 @@
             this.undoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("undoToolStripMenuItem.Image")));
             this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
             this.undoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.undoToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.undoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.undoToolStripMenuItem.Text = "Undo";
+            this.undoToolStripMenuItem.Click += new System.EventHandler(this.undoToolStripMenuItem_Click);
             // 
             // renoToolStripMenuItem
             // 
@@ -158,8 +159,9 @@
             this.renoToolStripMenuItem.Name = "renoToolStripMenuItem";
             this.renoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.Z)));
-            this.renoToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.renoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.renoToolStripMenuItem.Text = "Reno";
+            this.renoToolStripMenuItem.Click += new System.EventHandler(this.renoToolStripMenuItem_Click);
             // 
             // penToolStripMenuItem
             // 
@@ -170,7 +172,7 @@
             this.colorToolStripMenuItem});
             this.penToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("penToolStripMenuItem.Image")));
             this.penToolStripMenuItem.Name = "penToolStripMenuItem";
-            this.penToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.penToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.penToolStripMenuItem.Text = "Pen";
             // 
             // styleToolStripMenuItem
@@ -182,28 +184,33 @@
             this.dotToolStripMenuItem,
             this.dashDotToolStripMenuItem});
             this.styleToolStripMenuItem.Name = "styleToolStripMenuItem";
-            this.styleToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.styleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.styleToolStripMenuItem.Text = "Style";
+           
             // 
             // solidToolStripMenuItem
             // 
             this.solidToolStripMenuItem.Checked = true;
             this.solidToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.solidToolStripMenuItem.Name = "solidToolStripMenuItem";
-            this.solidToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.solidToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.solidToolStripMenuItem.Text = "Solid";
+            this.solidToolStripMenuItem.Click += new System.EventHandler(this.solidToolStripMenuItem_Click);
             // 
             // dotToolStripMenuItem
             // 
+            this.dotToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dotToolStripMenuItem.Name = "dotToolStripMenuItem";
-            this.dotToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.dotToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.dotToolStripMenuItem.Text = "Dot";
+            this.dotToolStripMenuItem.Click += new System.EventHandler(this.dotToolStripMenuItem_Click);
             // 
             // dashDotToolStripMenuItem
             // 
             this.dashDotToolStripMenuItem.Name = "dashDotToolStripMenuItem";
-            this.dashDotToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.dashDotToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.dashDotToolStripMenuItem.Text = "DashDotDot";
+            this.dashDotToolStripMenuItem.Click += new System.EventHandler(this.dashDotToolStripMenuItem_Click);
             // 
             // colorToolStripMenuItem
             // 
@@ -284,7 +291,6 @@
             this.toolStripButton4.Name = "toolStripButton4";
             this.toolStripButton4.Size = new System.Drawing.Size(52, 54);
             this.toolStripButton4.Text = "Color";
-            
             // 
             // toolStripSeparator2
             // 
@@ -313,21 +319,26 @@
             // trackBar1
             // 
             this.trackBar1.Location = new System.Drawing.Point(387, 3);
+            this.trackBar1.Maximum = 100;
+            this.trackBar1.Minimum = 1;
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Size = new System.Drawing.Size(331, 45);
             this.trackBar1.TabIndex = 1;
+            this.trackBar1.Value = 1;
+            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(3, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.Size = new System.Drawing.Size(49, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
+            this.label1.Text = "label_XY";
             // 
             // panel2
             // 
+            this.panel2.AutoScroll = true;
             this.panel2.Controls.Add(this.picDrawingSurface);
             this.panel2.Location = new System.Drawing.Point(58, 24);
             this.panel2.Name = "panel2";
@@ -336,11 +347,15 @@
             // 
             // picDrawingSurface
             // 
+            this.picDrawingSurface.BackColor = System.Drawing.SystemColors.Window;
             this.picDrawingSurface.Location = new System.Drawing.Point(6, 3);
             this.picDrawingSurface.Name = "picDrawingSurface";
             this.picDrawingSurface.Size = new System.Drawing.Size(686, 322);
             this.picDrawingSurface.TabIndex = 0;
             this.picDrawingSurface.TabStop = false;
+            this.picDrawingSurface.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picDrawingSurface_MouseDown_1);
+            this.picDrawingSurface.MouseMove += new System.Windows.Forms.MouseEventHandler(this.picDrawingSurface_MouseMove_1);
+            this.picDrawingSurface.MouseUp += new System.Windows.Forms.MouseEventHandler(this.picDrawingSurface_MouseUp_1);
             // 
             // Form1
             // 
