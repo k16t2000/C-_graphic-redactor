@@ -19,15 +19,23 @@ namespace GUI
 
         GraphicsPath currentPath;
         Point oldLocation;
+        Point CurrentPoint;
+        
         public Pen currentPen;
         Color historyColor;//sohranenie tekushego zveta pered ispolzovanie Lastika
         List<Image> History;// Spisok dlja istorii
-        
+
+        Color CurrentColor = Color.Black;//zvet dobavila************
+        Graphics g;//*******************************
+
+
         //v panel2 aktivirovala autoscroll=true, dlja prosmotra bolshih kartinok
         public Form1()
         {
             InitializeComponent();
-        
+
+            
+
             drawing = false;//peremennaja otvetstvena za risovanie
             currentPen = new Pen(Color.Black);//inizilizoravili pero -4ernoe
             currentPen.Width = trackBar1.Value;//inizializazija tolshini pera
@@ -37,8 +45,9 @@ namespace GUI
             toolStrip1.BackColor= Color.FromArgb(224, 224, 224);
             menuStrip1.BackColor=Color.FromArgb(224, 224, 224);
             //this.picDrawingSurface.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);vizivaet srazu sohranenie faila, posle risovanika
-           
 
+
+            g = picDrawingSurface.CreateGraphics();//********************************************
         }
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)//menu panel, button new
@@ -188,8 +197,9 @@ namespace GUI
             {
                 drawing = true;
                 oldLocation = e.Location;
+                CurrentPoint = e.Location;//********************************
                 currentPath = new GraphicsPath();
-                currentPen = new Pen(Color.Black, trackBar1.Value);
+                currentPen = new Pen(CurrentColor, trackBar1.Value);//*Color.Black***************//
                 currentPen.EndCap = System.Drawing.Drawing2D.LineCap.Round;//nakone4nik pen
                 currentPen.StartCap = System.Drawing.Drawing2D.LineCap.Round;
                 //currentPen.Width = 5;
@@ -245,7 +255,10 @@ namespace GUI
 
             if (drawing)
             {
+                
                 Graphics g = Graphics.FromImage(picDrawingSurface.Image);
+              
+                
                 currentPath.AddLine(oldLocation, e.Location);
                 g.DrawPath(currentPen, currentPath);
                 oldLocation = e.Location;
@@ -305,6 +318,27 @@ namespace GUI
             dashDotToolStripMenuItem.Checked = true;
         }
 
-       
+        private void colorToolStripMenuItem_Click(object sender, EventArgs e)//panel,button color
+        {
+            DialogResult D = colorDialog1.ShowDialog();
+            if (D == System.Windows.Forms.DialogResult.OK)
+            {
+                CurrentColor = colorDialog1.Color;
+            }
+        }
+        private void for_paint()
+        {
+            Pen p = new Pen(CurrentColor);//**********************************************
+            g.DrawLine(p, oldLocation, CurrentPoint);
+        }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)//button toolstrip colors
+        {
+            DialogResult D = colorDialog1.ShowDialog();
+            if (D == System.Windows.Forms.DialogResult.OK)
+            {
+                CurrentColor = colorDialog1.Color;
+            }
+        }
     }
 }
